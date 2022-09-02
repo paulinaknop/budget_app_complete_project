@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "354008013891",
+    "project_id": "budget-app-ac469",
+    "storage_bucket": "budget-app-ac469.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354008013891:android:f3ec5a3505bf13f03e88f6",
+        "android_client_info": {
+          "package_name": "com.paulinaknop.budget_app_starting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354008013891-ic13obfslcpclss35cov7hu8ri19r4t4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.paulinaknop.budget_app_starting",
+            "certificate_hash": "7207dc5561c9b8f3ff4cc1a5e4f878b96b8a0f8e"
+          }
+        },
+        {
+          "client_id": "354008013891-cace3i0f2c1doju32s2s4mucgsmc0gid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgr68QbFxCmHKhVMuMxoW8702COUN-V_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354008013891-cace3i0f2c1doju32s2s4mucgsmc0gid.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
