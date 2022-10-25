@@ -60,6 +60,7 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    namespace 'com.paulinaknop.budget_app_starting'
 }
 
 flutter {
