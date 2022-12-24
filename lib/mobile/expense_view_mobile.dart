@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../components.dart';
 import '../view_model.dart';
@@ -37,78 +35,7 @@ class ExpenseViewMobile extends HookConsumerWidget {
 
     return SafeArea(
       child: Scaffold(
-        drawer: Drawer(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DrawerHeader(
-                padding: EdgeInsets.only(bottom: 20.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(width: 1.0, color: Colors.black)),
-                  child: CircleAvatar(
-                    radius: 180.0,
-                    backgroundColor: Colors.white,
-                    child: Image(
-                      height: 100.0,
-                      image: AssetImage(
-                        'assets/logo.png',
-                      ),
-                      filterQuality: FilterQuality.high,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              MaterialButton(
-                elevation: 20.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                height: 50.0,
-                minWidth: 200.0,
-                color: Colors.black,
-                child: OpenSans(
-                  text: "Logout",
-                  size: 20.0,
-                  color: Colors.white,
-                ),
-                onPressed: () async {
-                  await viewModelProvider.logout();
-                },
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    onPressed: () async => await launchUrl(
-                        Uri.parse("https://www.twitter.com/tomcruise")),
-                    icon: SvgPicture.asset(
-                      "assets/instagram.svg",
-                      color: Colors.black,
-                      width: 35.0,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () async => await launchUrl(
-                        Uri.parse("https://www.twitter.com/tomcruise")),
-                    icon: SvgPicture.asset(
-                      "assets/twitter.svg",
-                      color: Colors.black,
-                      width: 35.0,
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
+        drawer: DrawerExpense(),
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white, size: 30.0),
           centerTitle: true,
@@ -203,64 +130,10 @@ class ExpenseViewMobile extends HookConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 //Add expense
-                SizedBox(
-                  height: 40.0,
-                  width: 155.0,
-                  child: MaterialButton(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 15.0,
-                        ),
-                        OpenSans(
-                          text: "Add Expense",
-                          size: 14.0,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                    onPressed: () async {
-                      await viewModelProvider.addExpense(context);
-                    },
-                    splashColor: Colors.grey,
-                    color: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                  ),
-                ),
+                AddExpense(),
                 SizedBox(width: 10.0),
                 //Add income
-                SizedBox(
-                  height: 40.0,
-                  width: 155.0,
-                  child: MaterialButton(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 15.0,
-                        ),
-                        OpenSans(
-                          text: "Add Income",
-                          size: 14.0,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                    onPressed: () async {
-                      await viewModelProvider.addIncome(context);
-                    },
-                    splashColor: Colors.grey,
-                    color: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                  ),
-                ),
+                AddIncome(),
               ],
             ),
             SizedBox(height: 30.0),

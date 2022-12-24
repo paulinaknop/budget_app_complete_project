@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Budget App",
       //  theme: ThemeData(useMaterial3: true),
       home: ResponsiveHandler(),
     );

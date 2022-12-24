@@ -2,9 +2,11 @@ import 'package:budget_app_starting/view_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sign_button/sign_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Pacifico extends StatelessWidget {
   final text;
@@ -324,7 +326,7 @@ class RegisterAndLogin extends HookConsumerWidget {
           child: MaterialButton(
             child: OpenSans(
               text: "Register",
-              size: 25.0,
+              size: 24.0,
               color: Colors.white,
             ),
             onPressed: () async {
@@ -355,7 +357,7 @@ class RegisterAndLogin extends HookConsumerWidget {
           child: MaterialButton(
             child: OpenSans(
               text: "Login",
-              size: 25.0,
+              size: 24.0,
               color: Colors.white,
             ),
             onPressed: () async {
@@ -392,4 +394,153 @@ class GoogleSignInButton extends HookConsumerWidget {
       },
     );
   }
+}
+
+class DrawerExpense extends HookConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final viewModelProvider = ref.watch(viewModel);
+    return Drawer(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DrawerHeader(
+            padding: EdgeInsets.only(bottom: 20.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(width: 1.0, color: Colors.black)),
+              child: CircleAvatar(
+                radius: 180.0,
+                backgroundColor: Colors.white,
+                child: Image(
+                  height: 100.0,
+                  image: AssetImage(
+                    'assets/logo.png',
+                  ),
+                  filterQuality: FilterQuality.high,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          MaterialButton(
+            elevation: 20.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            height: 50.0,
+            minWidth: 200.0,
+            color: Colors.black,
+            child: OpenSans(
+              text: "Logout",
+              size: 20.0,
+              color: Colors.white,
+            ),
+            onPressed: () async {
+              await viewModelProvider.logout();
+            },
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () async => await launchUrl(
+                    Uri.parse("https://www.instagram.com/tomcruise")),
+                icon: SvgPicture.asset(
+                  "assets/instagram.svg",
+                  color: Colors.black,
+                  width: 35.0,
+                ),
+              ),
+              IconButton(
+                onPressed: () async => await launchUrl(
+                    Uri.parse("https://www.twitter.com/tomcruise")),
+                icon: SvgPicture.asset(
+                  "assets/twitter.svg",
+                  color: Colors.black,
+                  width: 35.0,
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class AddExpense extends HookConsumerWidget{
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final viewModelProvider = ref.watch(viewModel);
+    return  SizedBox(
+      height: 45.0,
+      width: 160.0,
+      child: MaterialButton(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            OpenSans(
+              text: "Add Expense",
+              size: 17.0,
+              color: Colors.white,
+            ),
+          ],
+        ),
+        onPressed: () async {
+          await viewModelProvider.addExpense(context);
+        },
+        splashColor: Colors.grey,
+        color: Colors.black,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0)),
+      ),
+    );
+  }
+
+}
+
+class AddIncome extends HookConsumerWidget{
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final viewModelProvider = ref.watch(viewModel);
+    return SizedBox(
+      height: 45.0,
+      width: 160.0,
+      child: MaterialButton(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            OpenSans(
+              text: "Add Income",
+              size: 17.0,
+              color: Colors.white,
+            ),
+          ],
+        ),
+        onPressed: () async {
+          await viewModelProvider.addIncome(context);
+        },
+        splashColor: Colors.grey,
+        color: Colors.black,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0)),
+      ),
+    );
+  }
+
 }
