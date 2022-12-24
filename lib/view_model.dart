@@ -20,7 +20,9 @@ class ViewModel extends ChangeNotifier {
   List incomesAmount = [];
 //  bool isSignedIn = false;
   bool isObscure = true;
-
+  int totalExpense = 0;
+  int totalIncome = 0;
+  int budgetLeft = 0;
   var logger = Logger();
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
@@ -44,6 +46,19 @@ class ViewModel extends ChangeNotifier {
 
   toggleObscure() {
     isObscure = !isObscure;
+    notifyListeners();
+  }
+
+  void calculate() {
+    totalExpense = 0;
+    totalIncome = 0;
+    for (int i = 0; i < expensesAmount.length; i++) {
+      totalExpense = totalExpense + int.parse(expensesAmount[i]);
+    }
+    for (int i = 0; i < incomesAmount.length; i++) {
+      totalIncome = totalIncome + int.parse(incomesAmount[i]);
+    }
+    budgetLeft = totalIncome - totalExpense;
     notifyListeners();
   }
 
@@ -286,6 +301,7 @@ class ViewModel extends ChangeNotifier {
         logger.d(expensesName, expensesAmount);
         notifyListeners();
       }
+      calculate();
     }
   }
 
@@ -303,6 +319,7 @@ class ViewModel extends ChangeNotifier {
         logger.d(incomesName, incomesAmount);
         notifyListeners();
       }
+      calculate();
     }
   }
 

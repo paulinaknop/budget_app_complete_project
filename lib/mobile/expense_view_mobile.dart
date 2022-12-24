@@ -17,21 +17,6 @@ class ExpenseViewMobile extends HookConsumerWidget {
       viewModelProvider.incomesStream();
       isLoading = false;
     }
-    int totalExpense = 0;
-    int totalIncome = 0;
-    void calculate() {
-      for (int i = 0; i < viewModelProvider.expensesAmount.length; i++) {
-        totalExpense =
-            totalExpense + int.parse(viewModelProvider.expensesAmount[i]);
-      }
-      for (int i = 0; i < viewModelProvider.incomesAmount.length; i++) {
-        totalIncome =
-            totalIncome + int.parse(viewModelProvider.incomesAmount[i]);
-      }
-    }
-
-    calculate();
-    int budgetLeft = totalIncome - totalExpense;
 
     return SafeArea(
       child: Scaffold(
@@ -104,17 +89,17 @@ class ExpenseViewMobile extends HookConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Poppins(
-                            text: " $budgetLeft\$",
+                            text: " ${viewModelProvider.budgetLeft}\$",
                             size: 14.0,
                             color: Colors.white,
                           ),
                           Poppins(
-                            text: " $totalExpense\$",
+                            text: " ${viewModelProvider.totalExpense}\$",
                             size: 14.0,
                             color: Colors.white,
                           ),
                           Poppins(
-                            text: " $totalIncome\$",
+                            text: " ${viewModelProvider.totalIncome}\$",
                             size: 14.0,
                             color: Colors.white,
                           ),
