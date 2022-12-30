@@ -1,7 +1,7 @@
-import 'package:budget_app_starting/mobile/expense_view_mobile.dart';
-import 'package:budget_app_starting/mobile/login_view_mobile.dart';
-import 'package:budget_app_starting/web/expense_view_web.dart';
-import 'package:budget_app_starting/web/login_view_web.dart';
+import 'package:budget_app_starting/mobile/expense_mobile_view.dart';
+import 'package:budget_app_starting/mobile/login_mobile_view.dart';
+import 'package:budget_app_starting/web/expense_web_view.dart';
+import 'package:budget_app_starting/web/login_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
