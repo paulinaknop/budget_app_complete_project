@@ -52,61 +52,7 @@ class ExpenseViewMobile extends HookConsumerWidget {
                     color: Colors.black,
                     borderRadius: BorderRadius.all(Radius.circular(25.0)),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Poppins(
-                            text: "Budget left",
-                            size: 14.0,
-                            color: Colors.white,
-                          ),
-                          Poppins(
-                            text: "Total Expense",
-                            size: 14.0,
-                            color: Colors.white,
-                          ),
-                          Poppins(
-                            text: "Total Income",
-                            size: 14.0,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                      RotatedBox(
-                        quarterTurns: 1,
-                        child: Divider(
-                          indent: 40.0,
-                          endIndent: 40.0,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Poppins(
-                            text: " ${viewModelProvider.budgetLeft}\$",
-                            size: 14.0,
-                            color: Colors.white,
-                          ),
-                          Poppins(
-                            text: " ${viewModelProvider.totalExpense}\$",
-                            size: 14.0,
-                            color: Colors.white,
-                          ),
-                          Poppins(
-                            text: " ${viewModelProvider.totalIncome}\$",
-                            size: 14.0,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                  child: TotalCalculation(14.0),
                 ),
               ],
             ),

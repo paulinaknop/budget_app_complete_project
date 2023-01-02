@@ -475,11 +475,11 @@ class DrawerExpense extends HookConsumerWidget {
   }
 }
 
-class AddExpense extends HookConsumerWidget{
+class AddExpense extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModelProvider = ref.watch(viewModel);
-    return  SizedBox(
+    return SizedBox(
       height: 45.0,
       width: 160.0,
       child: MaterialButton(
@@ -502,15 +502,14 @@ class AddExpense extends HookConsumerWidget{
         },
         splashColor: Colors.grey,
         color: Colors.black,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0)),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       ),
     );
   }
-
 }
 
-class AddIncome extends HookConsumerWidget{
+class AddIncome extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModelProvider = ref.watch(viewModel);
@@ -537,10 +536,73 @@ class AddIncome extends HookConsumerWidget{
         },
         splashColor: Colors.grey,
         color: Colors.black,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0)),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       ),
     );
   }
+}
 
+class TotalCalculation extends HookConsumerWidget {
+  final size;
+  TotalCalculation(this.size);
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final viewModelProvider = ref.watch(viewModel);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Poppins(
+              text: "Budget left",
+              size: size,
+              color: Colors.white,
+            ),
+            Poppins(
+              text: "Total Expense",
+              size: size,
+              color: Colors.white,
+            ),
+            Poppins(
+              text: "Total Income",
+              size: size,
+              color: Colors.white,
+            ),
+          ],
+        ),
+        RotatedBox(
+          quarterTurns: 1,
+          child: Divider(
+            indent: 40.0,
+            endIndent: 40.0,
+            color: Colors.grey,
+          ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Poppins(
+              text: " ${viewModelProvider.budgetLeft}\$",
+              size: size,
+              color: Colors.white,
+            ),
+            Poppins(
+              text: " ${viewModelProvider.totalExpense}\$",
+              size: size,
+              color: Colors.white,
+            ),
+            Poppins(
+              text: " ${viewModelProvider.totalIncome}\$",
+              size: size,
+              color: Colors.white,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 }
