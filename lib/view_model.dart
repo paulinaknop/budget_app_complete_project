@@ -1,4 +1,5 @@
 import 'package:budget_app_starting/components.dart';
+import 'package:budget_app_starting/models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +15,9 @@ final authStateProvider = StreamProvider<User?>((ref) {
 
 class ViewModel extends ChangeNotifier {
   final _auth = FirebaseAuth.instance;
-  List expensesName = [];
-  List expensesAmount = [];
-  List incomesName = [];
-  List incomesAmount = [];
+  List<Models> expenses = [];
+  List<Models> incomes = [];
+
 //  bool isSignedIn = false;
   bool isObscure = true;
   int totalExpense = 0;
@@ -52,11 +52,11 @@ class ViewModel extends ChangeNotifier {
   void calculate() {
     totalExpense = 0;
     totalIncome = 0;
-    for (int i = 0; i < expensesAmount.length; i++) {
-      totalExpense = totalExpense + int.parse(expensesAmount[i]);
+    for (int i = 0; i < expenses.length; i++) {
+      totalExpense = totalExpense + int.parse(expenses[i].amount);
     }
-    for (int i = 0; i < incomesAmount.length; i++) {
-      totalIncome = totalIncome + int.parse(incomesAmount[i]);
+    for (int i = 0; i < incomes.length; i++) {
+      totalIncome = totalIncome + int.parse(incomes[i].amount);
     }
     budgetLeft = totalIncome - totalExpense;
     notifyListeners();
@@ -293,14 +293,20 @@ class ViewModel extends ChangeNotifier {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('expenses')
         .snapshots()) {
-      expensesAmount = [];
-      expensesName = [];
-      for (var expenses in snapshot.docs) {
-        expensesName.add(expenses.data()['name']);
-        expensesAmount.add(expenses.data()['amount']);
-        logger.d(expensesName, expensesAmount);
-        notifyListeners();
-      }
+      expenses = [];
+      snapshot.docs.forEach((element) {
+        expenses.add(Models.fromJson(element.data()));
+      });
+      logger.d("Expense Models ${expenses.length}");
+      notifyListeners();
+      // expensesAmount = [];
+      // expensesName = [];
+      // for (var expenses in snapshot.docs) {
+      //   expensesName.add(expenses.data()['name']);
+      //   expensesAmount.add(expenses.data()['amount']);
+      //   logger.d(expensesName, expensesAmount);
+      //   notifyListeners();
+      // }
       calculate();
     }
   }
@@ -311,14 +317,19 @@ class ViewModel extends ChangeNotifier {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('incomes')
         .snapshots()) {
-      incomesAmount = [];
-      incomesName = [];
-      for (var expenses in snapshot.docs) {
-        incomesName.add(expenses.data()['name']);
-        incomesAmount.add(expenses.data()['amount']);
-        logger.d(incomesName, incomesAmount);
-        notifyListeners();
-      }
+      incomes = [];
+      snapshot.docs.forEach((element) {
+        incomes.add(Models.fromJson(element.data()));
+      });
+      notifyListeners();
+      // incomesAmount = [];
+      // incomesName = [];
+      // for (var expenses in snapshot.docs) {
+      //   incomesName.add(expenses.data()['name']);
+      //   incomesAmount.add(expenses.data()['amount']);
+      //   logger.d(incomesName, incomesAmount);
+      //   notifyListeners();
+      // }
       calculate();
     }
   }

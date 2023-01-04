@@ -129,11 +129,11 @@ class ExpenseViewWeb extends HookConsumerWidget {
                             border:
                                 Border.all(width: 1.0, color: Colors.white)),
                         child: ListView.builder(
-                          itemCount: viewModelProvider.expensesAmount.length,
+                          itemCount: viewModelProvider.expenses.length,
                           itemBuilder: (BuildContext context, int index) {
                             return IncomeExpenseRow(
-                              text: viewModelProvider.expensesName[index],
-                              amount: viewModelProvider.expensesAmount[index],
+                              text: viewModelProvider.expenses[index].name,
+                              amount: viewModelProvider.expenses[index].amount,
                             );
                           },
                         ))
@@ -177,11 +177,11 @@ class ExpenseViewWeb extends HookConsumerWidget {
                             border:
                                 Border.all(width: 1.0, color: Colors.white)),
                         child: ListView.builder(
-                          itemCount: viewModelProvider.incomesAmount.length,
+                          itemCount: viewModelProvider.incomes.length,
                           itemBuilder: (BuildContext context, int index) {
                             return IncomeExpenseRow(
-                              text: viewModelProvider.incomesName[index],
-                              amount: viewModelProvider.incomesAmount[index],
+                              text: viewModelProvider.incomes[index].name,
+                              amount: viewModelProvider.incomes[index].amount,
                             );
                           },
                         ))
