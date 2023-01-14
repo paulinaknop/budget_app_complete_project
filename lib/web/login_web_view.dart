@@ -2,12 +2,12 @@ import 'package:budget_app_starting/components.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../view_model.dart';
+//import '../view_model.dart';
 
 class LoginViewWeb extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final viewModelProvider = ref.watch(viewModel);
+   // final viewModelProvider = ref.watch(viewModel);
     final double deviceWidth = MediaQuery.of(context).size.width;
     final double deviceHeight = MediaQuery.of(context).size.height;
 
