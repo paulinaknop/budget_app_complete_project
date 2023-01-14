@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../components.dart';
-import '../view_model.dart';
+// import '../view_model.dart';
 
 class LoginViewMobile extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final viewModelProvider = ref.watch(viewModel);
+    // final viewModelProvider = ref.watch(viewModel);
     final double deviceHeight = MediaQuery.of(context).size.height;
     //  final double categoryWidth = MediaQuery.of(context).size.width;
     return SafeArea(
