@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+import 'firebase_options.dart';
 import 'responsive_handler.dart';
 
 void main() async {
@@ -11,17 +12,10 @@ void main() async {
   if (kIsWeb) {
     setPathUrlStrategy();
     await Firebase.initializeApp(
-      options: FirebaseOptions(
-          apiKey: "AIzaSyDTqxkfEwFAAqDzmRlMJ6BT-YVDdnsu6yw",
-          authDomain: "budget-app-3eb54.firebaseapp.com",
-          projectId: "budget-app-3eb54",
-          storageBucket: "budget-app-3eb54.appspot.com",
-          messagingSenderId: "582942096598",
-          appId: "1:582942096598:web:fe5d329e7037106a821d77",
-          measurementId: "G-Q2LS71J1N6"),
+      options: DefaultFirebaseOptions.currentPlatform,
     );
   } else {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp( options: DefaultFirebaseOptions.currentPlatform,);
   }
 
   runApp(
